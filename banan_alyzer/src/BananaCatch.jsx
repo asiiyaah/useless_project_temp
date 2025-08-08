@@ -6,9 +6,17 @@ export default function BananaCatch() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    function resizeCanvas() {
+      if (canvasRef.current) {
+        canvasRef.current.width = canvasRef.current.parentElement.offsetWidth;
+        canvasRef.current.height = canvasRef.current.parentElement.offsetHeight;
+      }
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
     const k = kaboom({
-      width: 640,
-      height: 480,
+      width: canvasRef.current ? canvasRef.current.parentElement.offsetWidth : window.innerWidth,
+      height: canvasRef.current ? canvasRef.current.parentElement.offsetHeight : window.innerHeight,
       background: [0, 0, 0],
       canvas: canvasRef.current,
       global: false,
@@ -113,8 +121,16 @@ export default function BananaCatch() {
 
     return () => {
       k.destroyAll();
+      window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
-  return <canvas ref={canvasRef}></canvas>;
+  return (
+    <div style={{ width: "100%", height: "100vh" }}>
+      <canvas
+        ref={canvasRef}
+        style={{ width: "100%", height: "100%", display: "block" }}
+      ></canvas>
+    </div>
+  );
 }
