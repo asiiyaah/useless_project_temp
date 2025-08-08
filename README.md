@@ -1,7 +1,7 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-### Banan-alyzer🍌 
+## Banan-alyzer🍌 
 
 
 ## Basic Details
@@ -25,21 +25,21 @@ Banan-Alyzer uses cutting-edge “banana orientation detection” technology to 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [JavaScript]
-- [React.js,HTML,CSS]
-- [Kaboom.js,GSap]
-- [npm,VSCode,Teachable]
+- JavaScript
+- React.js,HTML,CSS
+- Kaboom.js,GSap
+- npm,VSCode,Teachable
 
 ### Implementation
 For Software:
 # Installation
-[npm create vite@latest my-game]
-[npm install]
-[npm install kaboom]
-[npm install gsap]
+npm create vite@latest my-game
+npm install
+npm install kaboom
+npm install gsap
 
 # Run
-[npm run dev]
+npm run dev
 
 
 # Screenshots (Add at least 3)
