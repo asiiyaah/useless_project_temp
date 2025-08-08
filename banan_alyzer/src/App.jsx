@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleUpload = () => {
+    if (!selectedFile) {
+      alert("Please select a banana image first 🍌");
+      return;
+    }
+    // Later: send file to AI backend
+    console.log("File ready for upload:", selectedFile);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      {/* Title Section */}
+      <header className="header">
+        <h1>Banan_alyzer 🍌</h1>
+        <p>Is your banana peeled upright or correctly? Let’s find out!</p>
+      </header>
 
-export default App
+      {/* Upload Section */}
+      <section className="upload-section">
+        <label className="file-label">
+          <input type="file" accept="image/*" onChange={handleFileChange} />
+          {selectedFile ? selectedFile.name : "Choose a banana photo"}
+        </label>
+        <button onClick={handleUpload}>Analyze Banana</button>
+      </section>
+    </div>
+  );
+}
