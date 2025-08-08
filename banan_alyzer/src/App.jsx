@@ -1,13 +1,32 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
+
 import JSConfetti from 'js-confetti';
 import { gsap } from "gsap";
 
 
 
+import * as tmImage from "@teachablemachine/image";
+
 export default function App() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [result, setResult] = useState("");
+  const [model, setModel] = useState(null);
+
+  const MODEL_URL = "/model/"; // Teachable Machine model folder
+
+  // Load model once
+  React.useEffect(() => {
+    const loadModel = async () => {
+      const loadedModel = await tmImage.load(
+        MODEL_URL + "model.json",
+        MODEL_URL + "metadata.json"
+      );
+      setModel(loadedModel);
+    };
+    loadModel();
+  }, []);
 
   // Refs for animation
   const appRef = useRef(null);
@@ -63,16 +82,31 @@ export default function App() {
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!selectedFile) {
       alert("Please select a banana image first 🍌");
       return;
     }
-    // Later: send file to AI backend
-    console.log("File ready for upload:", selectedFile);
+    if (!model) {
+      alert("Model is still loading...");
+      return;
+    }
+
+    // Preview for classification
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(selectedFile);
+    await img.decode();
+
+    const prediction = await model.predict(img);
+    console.log(prediction);
+
+    // Get the highest confidence prediction
+    const best = prediction.reduce((a, b) => (a.probability > b.probability ? a : b));
+    setResult(`${best.className} (${(best.probability * 100).toFixed(1)}%)`);
   };
 
   return (
+
     <div className="app " ref={appRef}>
       {/* Title Section */}
       <header className="header" ref={headerRef}>
@@ -91,6 +125,11 @@ export default function App() {
           <button className="ques" onClick={handleUpload}>Analyze Banana</button>
         </section>
       </div>
+      {result && (
+        <section className="result-section">
+          <h2>Result: {result}</h2>
+        </section>
+      )}
     </div>
   );
 }
