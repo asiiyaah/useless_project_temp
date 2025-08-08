@@ -1,27 +1,35 @@
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  /* font-family: "Segoe UI", sans-serif; */
   background-color: #000; /* Black background */
   color: #ffeb3b; /* Bright yellow text */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: "Pixelify Sans", sans-serif;
 }
 
 .app {
-  text-align: center;
-  background: #111; /* Deep black card */
+  text-align: center;/* Deep black card */
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0px 4px 15px rgba(255, 235, 59, 0.4);
   max-width: 400px;
   width: 90%;
+
+}
+.ques{
+  opacity: 0;
+}
+.app.active{
+  
+  box-shadow: 0px 4px 15px rgba(255, 235, 59, 0.4);
+  background: #111;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   color: #ffeb3b; /* Yellow title */
 }
 
@@ -69,4 +77,10 @@ button {
 
 button:hover {
   background: #ffeb3b;
+}
+.banana-confetti{
+  width:100%;
+  height: 100vh;
+  position: absolute;
+  inset: 0 0 0 0;
 }
