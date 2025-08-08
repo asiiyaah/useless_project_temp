@@ -6,23 +6,31 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   font-family: "Pixelify Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100vw;
 }
 
 .app {
-  text-align: center;/* Deep black card */
+  text-align: center; /* Deep black card */
   padding: 2rem;
   border-radius: 1rem;
-  max-width: 400px;
-  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  width: 90%;
+  height: 100vh;
 }
-.ques{
+.ques {
   opacity: 0;
 }
-.app.active{
-  
+.app.active {
   box-shadow: 0px 4px 15px rgba(255, 235, 59, 0.4);
   background: #111;
 }
@@ -78,9 +86,14 @@ button {
 button:hover {
   background: #ffeb3b;
 }
-.banana-confetti{
-  width:100%;
+.banana-confetti {
+  width: 100%;
   height: 100vh;
   position: absolute;
   inset: 0 0 0 0;
+  pointer-events: none;
+}
+.games-section {
+  width: 100%;
+  height: 100vh;
 }

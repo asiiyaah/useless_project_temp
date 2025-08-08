@@ -1,0 +1,120 @@
+import React, { useEffect, useRef } from "react";
+import kaboom from "kaboom";
+import "./game.css";
+
+export default function BananaCatch() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const k = kaboom({
+      width: 640,
+      height: 480,
+      background: [0, 0, 0],
+      canvas: canvasRef.current,
+      global: false,
+    });
+
+    // Load assets (place in /public)
+    k.loadSprite("banana", "/tip.png");
+    k.loadSprite("peel", "/base.png");
+
+    k.scene("game", () => {
+      let score = 0;
+      let lives = 3;
+
+      const scoreLabel = k.add([
+        k.text(`Score: ${score}`, { size: 24 }),
+        k.pos(20, 20),
+        k.fixed(),
+      ]);
+
+      const livesLabel = k.add([
+        k.text(`Lives: ${lives}`, { size: 24 }),
+        k.pos(k.width() - 20, 20),
+        k.anchor("topright"),
+        k.fixed(),
+      ]);
+
+      const peel = k.add([
+        k.sprite("peel"),
+        k.pos(k.width() / 2, k.height() - 40),
+        k.anchor("center"),
+        k.area(),
+        k.scale(0.1),
+        "peel",
+      ]);
+
+      k.onUpdate("peel", (p) => {
+        if (k.isKeyDown("left") || k.isKeyDown("a")) p.move(-400, 0);
+        if (k.isKeyDown("right") || k.isKeyDown("d")) p.move(400, 0);
+        p.pos.x = Math.min(Math.max(p.pos.x, 32), k.width() - 32);
+      });
+
+      function spawnBanana() {
+        k.add([
+          k.sprite("banana"),
+          k.pos(k.rand(40, k.width() - 40), 0),
+          k.anchor("center"),
+          k.area(),
+          k.scale(0.1),
+          k.move(k.DOWN, 180),
+          k.offscreen({ destroy: true }),
+          "banana",
+        ]);
+      }
+
+      k.loop(k.rand(0.5, 1.2), spawnBanana);
+
+      peel.onCollide("banana", (banana) => {
+        banana.caught = true;
+        k.destroy(banana);
+        score++;
+        scoreLabel.text = `Score: ${score}`;
+        k.addKaboom(peel.pos);
+      });
+
+      k.on("destroy", "banana", (banana) => {
+        if (!banana.caught) {
+          lives--;
+          livesLabel.text = `Lives: ${lives}`;
+          if (lives <= 0) k.go("lose", { score });
+        }
+      });
+    });
+
+    k.scene("lose", ({ score }) => {
+      k.add([
+        k.text(`Game Over!\nFinal Score: ${score}`, {
+          size: 48,
+          align: "center",
+        }),
+        k.pos(k.width() / 2, k.height() / 2 - 80),
+        k.anchor("center"),
+      ]);
+
+      const btn = k.add([
+        k.rect(200, 60, { radius: 8 }),
+        k.pos(k.width() / 2, k.height() / 2 + 60),
+        k.anchor("center"),
+        k.area(),
+        k.color(255, 255, 255),
+      ]);
+
+      btn.add([
+        k.text("Play Again", { size: 28 }),
+        k.anchor("center"),
+        k.color(0, 0, 0),
+      ]);
+
+      btn.onClick(() => k.go("game"));
+    });
+
+    k.go("game");
+
+    return () => {
+      k.destroyAll();
+    };
+  }, []);
+
+  return <canvas ref={canvasRef}></canvas>;
+}
