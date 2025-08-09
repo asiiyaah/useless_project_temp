@@ -26,20 +26,17 @@ Banan-Alyzer uses cutting-edge “banana orientation detection” technology to 
 ### Technologies/Components Used
 For Software:
 - JavaScript
-- React.js,HTML,CSS
-- Kaboom.js,GSap
-- npm,VSCode,Teachable
+- React.js
+- Kaboom.js,GSAP
+- Teachable
 
 ### Implementation
 For Software:
 # Installation
-npm create vite@latest my-game
-npm install
-npm install kaboom
-npm install gsap
+```npm install```
 
 # Run
-npm run dev
+```npm run dev```
 
 
 # Screenshots (Add at least 3)
