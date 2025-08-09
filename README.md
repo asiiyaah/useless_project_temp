@@ -2,6 +2,7 @@
 
 
 ## Banan-alyzer🍌 
+Hosted Link : https://useless-project-temp-nine.vercel.app/
 
 
 ## Basic Details
@@ -63,10 +64,13 @@ Explain the build steps
 Explain the final build
 
 ### Project Demo
-# Video
-[Add your demo video link here]
-Explain what the video demonstrates
 
+
+
+https://github.com/user-attachments/assets/df7ec942-c2ee-46f2-84ca-fb15448cd29c
+
+
+Our demo video demonstrates the landing page of our site. Then, we upload a picture of a banana and press the analyze button. After that, a game plays, and once you win, the result is revealed — whether it’s a banana or an ananab.
 
 
 ## Team Contributions
