@@ -31,8 +31,6 @@ For Software:
 - Kaboom.js,GSAP
 - Teachable
 
-### Implementation
-For Software:
 # Installation
 ```npm install```
 
