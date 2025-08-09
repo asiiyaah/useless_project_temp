@@ -40,14 +40,16 @@ For Software:
 
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-Add caption explaining what this shows
+![![landing page](https://github.com/user-attachments/assets/e2ed4cdf-3172-4ff0-8238-7e1822a90c9c)
+] Landing page of the website
 
-![Screenshot2](Add screenshot 2 here with proper name)
-Add caption explaining what this shows
+![![game page](https://github.com/user-attachments/assets/0a572493-8672-4a51-bcc9-0bebac641031)
+]
+Game page
 
-![Screenshot3](Add screenshot 3 here with proper name)
-Add caption explaining what this shows
+![![ending page](https://github.com/user-attachments/assets/9838b752-8c5e-41a8-87c5-f1548d3ed525)
+]
+Ending page
 
 
 # Build Photos
