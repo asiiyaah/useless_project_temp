@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import kaboom from "kaboom";
 import "./game.css";
 
-export default function BananaCatch() {
+export default function BananaCatch({ onWin }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -14,15 +14,19 @@ export default function BananaCatch() {
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+
     const k = kaboom({
-      width: canvasRef.current ? canvasRef.current.parentElement.offsetWidth : window.innerWidth,
-      height: canvasRef.current ? canvasRef.current.parentElement.offsetHeight : window.innerHeight,
+      width: canvasRef.current
+        ? canvasRef.current.parentElement.offsetWidth
+        : window.innerWidth,
+      height: canvasRef.current
+        ? canvasRef.current.parentElement.offsetHeight
+        : window.innerHeight,
       background: [0, 0, 0],
       canvas: canvasRef.current,
       global: false,
     });
 
-    // Load assets (place in /public)
     k.loadSprite("banana", "/tip.png");
     k.loadSprite("peel", "/base.png");
 
@@ -48,7 +52,7 @@ export default function BananaCatch() {
         k.pos(k.width() / 2, k.height() - 40),
         k.anchor("center"),
         k.area(),
-        k.scale(0.1),
+        k.scale(0.15), // increased size from 0.1
         "peel",
       ]);
 
@@ -64,22 +68,40 @@ export default function BananaCatch() {
           k.pos(k.rand(40, k.width() - 40), 0),
           k.anchor("center"),
           k.area(),
-          k.scale(0.1),
+          k.scale(0.15), // increased size from 0.1
           k.move(k.DOWN, 180),
           k.offscreen({ destroy: true }),
           "banana",
         ]);
       }
 
-      k.loop(k.rand(0.5, 1.2), spawnBanana);
+      k.loop(k.rand(1.5, 2.5), spawnBanana);
 
       peel.onCollide("banana", (banana) => {
-        banana.caught = true;
-        k.destroy(banana);
-        score++;
-        scoreLabel.text = `Score: ${score}`;
-        k.addKaboom(peel.pos);
-      });
+  banana.caught = true;
+  k.destroy(banana);
+  score++;
+  scoreLabel.text = `Score: ${score}`;
+
+  // Keep the kaboom animation
+  k.addKaboom(peel.pos);
+
+  // Add funny banana peel text at the kaboom spot
+  k.add([
+    k.text("SLIP ATTACK! 🍌", { size: 32, align: "center" }),
+    k.pos(peel.pos.x, peel.pos.y - 40), // slightly above kaboom
+    k.anchor("center"),
+    k.color(255, 255, 0), // banana yellow
+    k.lifespan(1), // disappears after 1 second
+    k.move(k.UP, 20) // floats up
+  ]);
+
+  if (score >= 3) {
+    onWin();
+    k.go("win", { score });
+  }
+});
+
 
       k.on("destroy", "banana", (banana) => {
         if (!banana.caught) {
@@ -88,6 +110,17 @@ export default function BananaCatch() {
           if (lives <= 0) k.go("lose", { score });
         }
       });
+    });
+
+    k.scene("win", ({ score }) => {
+      k.add([
+        k.text(`You Win!\nFinal Score: ${score}`, {
+          size: 48,
+          align: "center",
+        }),
+        k.pos(k.width() / 2, k.height() / 2),
+        k.anchor("center"),
+      ]);
     });
 
     k.scene("lose", ({ score }) => {
@@ -123,7 +156,7 @@ export default function BananaCatch() {
       k.destroyAll();
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, []);
+  }, [onWin]);
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
