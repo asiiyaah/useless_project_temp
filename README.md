@@ -1,102 +1,79 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [Project Name] 🎯
+## Banan-alyzer🍌 
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: SheCodes
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Asiya Muhammed Sali - Muthoot Institute of Technology and Science , Varikoli
+- Member 2: Cereena George - Muthoot Institute of Technology and Science , Varikoli
 
 ### Project Description
-[2-3 lines about what your project does]
+BananAlyzer is a fun web app where you upload a banana photo, and the site detects whether it’s peeled from the top or bottom. Before you can view the results, you must play a quick game , align the tip of the falling banana with the peel at the bottom to win and unlock your analysis.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Humanity has long struggled with one critical, unasked question — “Which side of the banana did you just peel? Was it the top or the bottom?”
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+
+Banan-Alyzer uses cutting-edge “banana orientation detection” technology to determine whether your banana photo understand whether your banana was peeled in the right way. But we don’t just hand you the answer — you must first prove your worth by playing a silly banana-catching game. Only then shall the sacred banana truth be revealed.
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- JavaScript
+- React.js
+- Kaboom.js,GSAP
+- Teachable
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+```npm install```
 
 # Run
-[commands]
+```npm run dev```
 
-### Project Documentation
-For Software:
 
 # Screenshots (Add at least 3)
 ![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+Add caption explaining what this shows
 
 ![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+Add caption explaining what this shows
 
 ![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+Add caption explaining what this shows
 
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
 
 # Build Photos
 ![Components](Add photo of your components here)
-*List out all components shown*
+List out all components shown
 
 ![Build](Add photos of build process here)
-*Explain the build steps*
+Explain the build steps
 
 ![Final](Add photo of final product here)
-*Explain the final build*
+Explain the final build
 
 ### Project Demo
 # Video
 [Add your demo video link here]
-*Explain what the video demonstrates*
+Explain what the video demonstrates
 
-# Additional Demos
-[Add any extra demo materials/links]
+
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Asiya Muhammed Sali: Image classification and frontend
+- Cereena George: Frontend 
+
 
 ---
-Made with ❤️ at TinkerHub Useless Projects 
+Made with ❤ at TinkerHub Useless Projects 
 
 ![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
 ![Static Badge](https://img.shields.io/badge/UselessProjects--25-25?link=https%3A%2F%2Fwww.tinkerhub.org%2Fevents%2FQ2Q1TQKX6Q%2FUseless%2520Projects)
-
-
-
